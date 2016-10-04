@@ -1,5 +1,5 @@
 # Site settings
-title: Solace Samples REST Messaging
+title: Solace REST Messaging API
 baseurl: "/solace-samples-rest-messaging" # the subpath of your site, e.g. /solace-samples-java
 repository: https://github.com/SolaceSamples/solace-samples-rest-messaging
 
