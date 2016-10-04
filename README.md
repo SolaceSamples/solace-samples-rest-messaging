@@ -1,6 +1,14 @@
-# solace-samples-rest-messaging
+# Getting Started Examples
+## Solace REST Messaging API
 
-TODO - Work in progress. Check back again soon!
+These tutorials will get you up to speed and sending messages with Solace technology as quickly as possible. There are two ways you can get started:
+
+- If your company has Solace message routers deployed, contact your middleware team to obtain the host name or IP address of a Solace message router to test against, a username and password to access it, and a VPN in which you can produce and consume messages.
+- If you do not have access to a Solace message router, you will need to go through the “[Set up a VMR](http://dev.solacesystems.com/get-started/vmr-setup-tutorials/setting-up-solace-vmr/)” tutorial to download and install the software.
+
+## Contents
+
+This repository contains tutorial walk throughs for basic Solace messaging patterns using the Solace REST Messaging API. For a nice introduction to the Solace API and associated tutorials, check out the [tutorials home page](https://solacesamples.github.io/solace-samples-rest-messaging/).
 
 ## Contributing
 
