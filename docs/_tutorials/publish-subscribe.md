@@ -123,9 +123,11 @@ In the above, you need to update RC_HOST and RC_PORT to represent the HOST and P
 Start your REST consumer using Node.js. For example:
 
 ```
-$ nodejs NodeRestServer.js
+$ node NodeRestServer.js
 Server running at http://RC_HOST:RC_PORT/
 ```
+
+**Note:** The executable is `nodejs` on Ubuntu due to a naming conflict with other packages.
 
 Again in your environment, the RC_HOST and RC_PORT will be the host/IP and port that your server is listening on. For example http://192.168.1.110:9090/.
 
