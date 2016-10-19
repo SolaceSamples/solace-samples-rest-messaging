@@ -8,12 +8,12 @@ repository: https://github.com/SolaceSamples/solace-samples-rest-messaging
 # Links
 docs-core-concepts: http://docs.solacesystems.com/Features/Core-Concepts.htm
 docs-topic-matching: http://docs.solacesystems.com/Features/Topic-Matching-and-Delivery-Modes.htm
-docs-vmr-setup: http://docs.solacesystems.com/Solace-VMR-Set-Up/Starting-VMRs-for-the-First-Time/Setting-Up-an-Eval-VMR-in-AWS.htm
 docs-vmr-defaults: http://docs.solacesystems.com/Solace-VMR-Set-Up/VMR-Configuration-Defaults.htm
 docs-rest-messaging: http://docs.solacesystems.com/Open-APIs-Protocols/REST-home.htm
 docs-rest-introduction: http://docs.solacesystems.com/Features/Using-REST.htm
 docs-rest-concepts: http://docs.solacesystems.com/Features/REST-Messaging-Concepts/REST-Msging-Concepts.htm
 docs-rest-protocol: http://docs.solacesystems.com/RESTMessagingPrtl/Solace-REST-Overview.htm
+docs-vmr-setup: http://docs.solace.com/Solace-VMR-Set-Up/Setting-Up-VMRs.htm
 
 #----------------------------------------------------
 # Generally don't modify items below this point
