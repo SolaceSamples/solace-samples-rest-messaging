@@ -281,4 +281,4 @@ Received message: /rest/tutorials
 
 You have now successfully sent and received a REST message on a topic.
 
-If you have any issues sending and receiving a message, check the [Solace community](http://dev.solacesystems.com/community/){:target="_top"} for answers to common issues.
+If you have any issues sending and receiving a message, check the [Solace community]({{ site.links-community }}){:target="_top"} for answers to common issues.
