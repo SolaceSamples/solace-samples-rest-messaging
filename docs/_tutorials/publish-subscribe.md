@@ -43,7 +43,7 @@ The Solace API uses the HTTP POST requests to allow clients to publish message t
 
 There are several benefits to this approach. First it removes the possibility of message loss which can exist when using HTTP GET requests without explicate separate acknowledgement.. It also enables much higher performance and overall message rate when multiple, parallel HTTP connections are used.
 
-The [Online REST Messaging Documentation]({{ site.docs-rest-messaging }}){:target="_top"} has the following pars which explaint he API in more detail:
+The [Online REST Messaging Documentation]({{ site.docs-rest-messaging }}){:target="_top"} has the following parts which explain the API in more detail:
 
 * REST Messaging Introduction & REST Messaging Concepts which explains the API at an architectural level.
 * REST Messaging Protocol which explains the wireline details explains like how to format the HTTP messages etc.
@@ -63,7 +63,7 @@ In order to send or receive messages to a Solace message router, you need to kno
   <tr>
     <td>Host URL</td>
     <td>String of the form <code>http(s)://HOST:PORT</code></td>
-    <td>TThis is the URL clients use when sending messages to the Solace message router. For a Solace VMR this there is only a single interface so the IP is the same as the management IP address. For Solace message router appliances this is the host address of the message-backbone.
+    <td>This is the URL clients use when sending messages to the Solace message router. For a Solace VMR this there is only a single interface so the IP is the same as the management IP address. For Solace message router appliances this is the host address of the message-backbone.
 
     The Port is configured in the message-vpn as a service port for incoming REST messages. HTTP and HTTPS are supported. By default in the Solace VMR this is port 9000 for the ‘default’ message-vpn.</td>
   </tr>
