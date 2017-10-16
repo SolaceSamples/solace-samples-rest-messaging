@@ -1,5 +1,6 @@
 # Site settings
 title: Solace REST Messaging API
+summary: These tutorials get you up to speed sending and receiving messages with Solace technology.
 baseurl: "/solace-samples-rest-messaging" # the subpath of your site, e.g. /solace-samples-java
 repository: https://github.com/SolaceSamples/solace-samples-rest-messaging
 
