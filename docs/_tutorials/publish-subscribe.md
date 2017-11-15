@@ -205,7 +205,7 @@ Password:
 ```
 {% endif %}
 
-If using a VMR load, log in to the Solace message router CLI as an `admin` user with the default `admin` password.
+If using a VMR load, log in to the Solace message router CLI using the management username and password for your Solace VMR.
 
 ```
 ssh admin@<HOST>
