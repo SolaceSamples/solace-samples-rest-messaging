@@ -13,16 +13,20 @@ This tutorial assumes the following:
 
 *   You are familiar with Solace [core concepts]({{ site.docs-core-concepts }}){:target="_top"}.
 *   You have access to a running Solace message router with the following configuration:
-    *   Enabled message VPN
-    *   Enabled client username
+    *   Connectivity information for a Solace message-VPN
+    *   Enabled client username and password
     *   Enabled guaranteed messaging support (needed for REST consumers)
     *   Client-profile enabled with guaranteed messaging permissions.
 
 *   REST service enabled for incoming and outgoing messages
 
-One simple way to get access to a Solace message router is to start a Solace VMR load [as outlined here]({{ site.docs-vmr-setup }}){:target="_top"}. By default the Solace VMR will run with the “default” message VPN configured and ready for messaging and the REST messaging service enabled for incoming connections on port 9000\. Going forward, this tutorial assumes that you are using the Solace VMR. If you are using a different Solace message router configuration, adapt the instructions to match your configuration.
+{% if jekyll.environment == 'solaceCloud' %}
+One simple way to get access to Solace messaging quickly is to create a messaging service in Solace Cloud [as outlined here]({{ site.links-solaceCloud-setup}}){:target="_top"}. You can find other ways to get access to Solace messaging below.
+{% else %}
+One simple way to get access to a Solace message router is to start a Solace VMR load [as outlined here]({{ site.docs-vmr-setup }}){:target="_top"}. By default the Solace VMR will with the “default” message VPN configured and ready for guaranteed messaging. Going forward, this tutorial assumes that you are using the Solace VMR. If you are using a different Solace message router configuration adapt the tutorial appropriately to match your configuration.
+{% endif %}
 
-You can learn all about REST Messaging on a Solace message router by referring to the [Online REST Messaging Documentation]({{ site.docs-rest-messaging }}){:target="_top"}.
+You can learn all about REST on Solace messaging by referring to the [Online REST Messaging Documentation]({{ site.docs-rest-messaging }}){:target="_top"}.
 
 ## Goals
 
@@ -33,9 +37,9 @@ The goal of this tutorial is to demonstrate the most basic messaging interaction
 
 ## Solace REST Messaging API Introduction
 
-As outlined in the [Online REST Messaging Documentation]({{ site.docs-rest-messaging }}){:target="_top"}, the API enable users to send messages to and asynchronously receive messages from Solace message routers over HTTP using a RESTful API.
+As outlined in the [Online REST Messaging Documentation]({{ site.docs-rest-messaging }}){:target="_top"}, the API enable users to send messages to and asynchronously receive messages with Solace messaging over HTTP using a RESTful API.
 
-The Solace API uses the HTTP POST requests to allow clients to publish message to a Solace message router. On the subscribe side, the Solace API follows the asynchronous notification pattern and use an HTTP POST from the Solace message router to the client to delivery messages. This means that pub and sub messages are sent on different HTTP connections than they are received as shown in the following figure.
+The Solace API uses the HTTP POST requests to allow clients to publish message Solace messaging. On the subscribe side, the Solace API follows the asynchronous notification pattern and use an HTTP POST from Solace messaging to the client to delivery messages. This means that pub and sub messages are sent on different HTTP connections than they are received as shown in the following figure.
 
 ![solace-rest-messaging-api]({{ site.baseurl }}/images/solace-rest-messaging-api.png)
 
@@ -48,42 +52,11 @@ The [Online REST Messaging Documentation]({{ site.docs-rest-messaging }}){:targe
 
 Because of the difference between publishing and subscribing, these topics are introduced as needed in the tutorial below.
 
-## Solace message router properties
-
-In order to send or receive messages to a Solace message router, you need to know a few details of how to connect to the Solace message router. Specifically you need to know the following:
-
-<table>
-  <tr>
-    <th>Resource</th>
-    <th>Value</th>
-    <th>Description</th>
-  </tr>
-  <tr>
-    <td>Host URL</td>
-    <td>String of the form <code>http(s)://HOST:PORT</code></td>
-    <td>This is the URL clients use when sending messages to the Solace message router. For a Solace VMR this there is only a single interface so the IP is the same as the management IP address. For Solace message router appliances this is the host address of the message-backbone.
-
-    The Port is configured in the message-vpn as a service port for incoming REST messages. HTTP and HTTPS are supported. By default in the Solace VMR this is port 9000 for the ‘default’ message-vpn.</td>
-  </tr>
-  <tr>
-    <td>Client Username</td>
-    <td>String</td>
-    <td>The client username. For the Solace VMR default message VPN, authentication is disabled by default, so this can be any value.</td>
-  </tr>
-  <tr>
-    <td>Client Password</td>
-    <td>String</td>
-    <td>The optional client password. For the Solace VMR default message VPN, authentication is disabled by default, so this can be any value or omitted.</td>
-  </tr>
-</table>
-
-To see the port number configured on your Solace message router and Message VPN for the REST service, run the following command in the Solace message router CLI or use SolAdmin.
-
-    solace-vmr> show service
-
-See the [VMR getting started]({{ site.docs-vmr-defaults }}){:target="_top"} tutorial for default credentials and accounts. Then paste the above command into the CLI.
-
-For the purposes of this tutorial, you will connect to the default message VPN of a Solace VMR so the only required information to proceed is the Solace VMR HOST string.
+{% if jekyll.environment == 'solaceCloud' %}
+  {% include solaceMessaging-cloud.md %}
+{% else %}
+    {% include solaceMessaging.md %}
+{% endif %}  
 
 ## Obtaining the Solace API
 
@@ -95,13 +68,13 @@ First this tutorial will show how to setup the subscriber side so that you are r
 
 ![]({{ site.baseurl }}/images/pub-sub-receiving-message-300x134.png)
 
-On the consume side, the Solace REST messaging API depends on a guaranteed messaging queue. As such it is a requirement for REST consumers that the Solace message routers support guaranteed messaging and have this feature configured as outlined in the [assumptions section above](#assumptions).
+On the consume side, the Solace REST messaging API depends on a guaranteed messaging queue. As such it is a requirement for REST consumers that Solace messaging support guaranteed messaging and have this feature configured as outlined in the [assumptions section above](#assumptions).
 
-In order to receive REST messages from a Solace message router, you must configure a Guaranteed messaging queue and a REST delivery point. The queue is used to attract messages to the consumer application. The REST delivery point is the Solace message router component that delivers the messages from the queue to the consumer application asynchronously through HTTP POST requests. This is explained in more detail in the [REST Messaging Concepts]({{ site.docs-rest-concepts }}){:target="_top"} where the REST consumers are explained. This tutorial will walk you through the required Solace message router configuration steps required to create a queue and REST delivery point to connect to your REST consumer application.
+In order to receive REST messages from Solace messaging, you must configure a Guaranteed messaging queue and a REST delivery point. The queue is used to attract messages to the consumer application. The REST delivery point is the Solace message router component that delivers the messages from the queue to the consumer application asynchronously through HTTP POST requests. This is explained in more detail in the [REST Messaging Concepts]({{ site.docs-rest-concepts }}){:target="_top"} where the REST consumers are explained. This tutorial will walk you through the required Solace messaging configuration steps required to create a queue and REST delivery point to connect to your REST consumer application.
 
 ### A Simple REST Consumer
 
-First you need a REST consuming application ready to receive HTTP connections from the Solace message router. This can be any HTTP server. This tutorial will demonstrate this using Node.js but Solace REST Messaging uses standard HTTP, so use your favorite HTTP server.
+First you need a REST consuming application ready to receive HTTP connections from Solace messaging. This can be any HTTP server. This tutorial will demonstrate this using Node.js but Solace REST Messaging uses standard HTTP, so use your favorite HTTP server.
 
 Create a file named NodeRestServer.js with the following contents.
 
@@ -116,7 +89,7 @@ http.createServer(function (req, res) {
 console.log('Server running at http://RC_HOST:RC_PORT/');
 ```
 
-In the above, you need to update RC_HOST and RC_PORT to represent the HOST and PORT that your REST consumer application will be listening on. This HTTP server listens for incoming requests and for each request it will print the URL of the request and respond with a 200 OK response. The 200 OK response indicates to the Solace message router that the message has been successfully processed and it can be removed from the Solace message router queue.
+In the above, you need to update RC_HOST and RC_PORT to represent the HOST and PORT that your REST consumer application will be listening on. This HTTP server listens for incoming requests and for each request it will print the URL of the request and respond with a 200 OK response. The 200 OK response indicates to Solace messaging that the message has been successfully processed and it can be removed from Solace messaging queue.
 
 Start your REST consumer using Node.js. For example:
 
@@ -135,7 +108,7 @@ Again in your environment, the RC_HOST and RC_PORT will be the host/IP and port 
 
 ### Configuring a REST Delivery Point
 
-Next, you must configure a queue and REST delivery point on the Solace message router. This means configuring the following Solace message router components.
+Next, you must configure a queue and REST delivery point on Solace messaging. This means configuring the following Solace messaging components.
 
 <table>
 <tr>
@@ -176,14 +149,14 @@ Next, you must configure a queue and REST delivery point on the Solace message r
   </tr>
 </table>
 
-You can learn about each of these components using [Features – REST Introduction]({{ site.docs-rest-introduction }}){:target="_top"}. In the script below, update the RC_HOST and RC_PORT to match your REST consumer application.
+You can learn about each of these components using [Features – REST Introduction]({{ site.docs-rest-introduction }}){:target="_top"}. In the script below, update VPNNAME to match that of your Solace messaging solution, and the RC_HOST and RC_PORT to match your REST consumer application.
 
 ```
 home
 enable
 configure
 
-message-spool message-vpn "default"
+message-spool message-vpn "VPNNAME"
     ! pragma:interpreter:ignore-already-exists
     create queue "Q/rdp1/input" primary
         access-type "exclusive"
@@ -193,7 +166,7 @@ message-spool message-vpn "default"
         exit
     exit
 
-message-vpn "default"
+message-vpn "VPNNAME"
     rest
         ! pragma:interpreter:ignore-already-exists
         create rest-delivery-point "rdp1"
@@ -217,10 +190,33 @@ message-vpn "default"
 end
 ```
 
+To apply this configuration, simply log in to Solace messaging CLI as an admin user and paste the above script fragments into the CLI.
+
+{% if jekyll.environment == 'solaceCloud' %}
+
+If connecting using Solace Cloud, obtain your management credentials by scrolling down to the Management section on the Connectivity tab, and connect using port 2222.
+
+![]({{ site.baseurl }}/images/management-info.png)
+
+```
+ssh <management-username>@<HOST> -p 2222
+Solace - Virtual Message Router (VMR)
+Password:
+```
+{% endif %}
+
+If using a VMR load, log in to the Solace message router CLI using the management username and password for your Solace VMR.
+
+```
+ssh admin@<HOST>
+Solace - Virtual Message Router (VMR)
+Password:
+```
+
 At this the REST delivery point is configured and should be operational and connected to your REST consumer application. You can verify this using SolAdmin or through the following CLI command.
 
 ```
-solace(configure)# show message-vpn default rest rest-delivery-point *
+solace(configure)# show message-vpn VPNNAME rest rest-delivery-point *
 
 Total REST Delivery Points (up):                       1
 Total REST Delivery Points (configured):               1
@@ -261,7 +257,7 @@ To send a message you can use the following command.
 $ curl -X POST -d "Hello World REST" http://HOST:PORT/T/rest/pubsub -H "content-type: text" -H "Solace-delivery-mode: direct"
 ```
 
-You will need to update HOST and PORT to match your Solace message router HOST and REST service port. This will send a message with contents “Hello World REST” as a Solace text message using the direct delivery mode. The “content-type” headers and “Solace-delivery-mode” are optional. If they are omitted then the Solace REST messaging default delivery mode of “persistent” will be used and the message contents will be treated as binary.
+You will need to update HOST and PORT to match your Solace messaging HOST and REST service port. This will send a message with contents “Hello World REST” as a Solace text message using the direct delivery mode. The “content-type” headers and “Solace-delivery-mode” are optional. If they are omitted then the Solace REST messaging default delivery mode of “persistent” will be used and the message contents will be treated as binary.
 
 You can also add credentials to the request by updating the cURL command to the following:
 

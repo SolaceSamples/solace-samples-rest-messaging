@@ -16,7 +16,7 @@ docs-rest-concepts: http://docs.solace.com/Features/REST-Messaging-Concepts/REST
 docs-rest-protocol: http://docs.solace.com/RESTMessagingPrtl/Solace-REST-Overview.htm
 docs-vmr-setup: http://docs.solace.com/Solace-VMR-Set-Up/Setting-Up-VMRs.htm
 links-community: http://dev.solace.com/community/
-
+links-solaceCloud-setup: http://cloud.solace.com/create-messaging-service/
 
 #----------------------------------------------------
 # Generally don't modify items below this point
