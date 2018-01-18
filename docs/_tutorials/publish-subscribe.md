@@ -20,11 +20,7 @@ This tutorial assumes the following:
 
 *   REST service enabled for incoming and outgoing messages
 
-{% if jekyll.environment == 'solaceCloud' %}
 One simple way to get access to Solace messaging quickly is to create a messaging service in Solace Cloud [as outlined here]({{ site.links-solaceCloud-setup}}){:target="_top"}. You can find other ways to get access to Solace messaging below.
-{% else %}
-One simple way to get access to a Solace message router is to start a Solace VMR load [as outlined here]({{ site.docs-vmr-setup }}){:target="_top"}. By default the Solace VMR will with the “default” message VPN configured and ready for guaranteed messaging. Going forward, this tutorial assumes that you are using the Solace VMR. If you are using a different Solace message router configuration adapt the tutorial appropriately to match your configuration.
-{% endif %}
 
 You can learn all about REST on Solace messaging by referring to the [Online REST Messaging Documentation]({{ site.docs-rest-messaging }}){:target="_top"}.
 
@@ -52,11 +48,7 @@ The [Online REST Messaging Documentation]({{ site.docs-rest-messaging }}){:targe
 
 Because of the difference between publishing and subscribing, these topics are introduced as needed in the tutorial below.
 
-{% if jekyll.environment == 'solaceCloud' %}
-  {% include solaceMessaging-cloud.md %}
-{% else %}
-    {% include solaceMessaging.md %}
-{% endif %}  
+{% include solaceMessaging.md %}
 
 ## Obtaining the Solace API
 
