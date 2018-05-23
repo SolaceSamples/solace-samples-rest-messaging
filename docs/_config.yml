@@ -7,6 +7,8 @@ repository: https://github.com/SolaceSamples/solace-samples-rest-messaging
 # Also see _includes/intro.html to customize the description which gets included in index.html.
 
 # Links
+hostname: cloud.solace.com
+dev-hostname: dev.solace.com
 docs-core-concepts: //docs.solace.com/Features/Core-Concepts.htm
 docs-topic-matching: //docs.solace.com/Features/Topic-Matching-and-Delivery-Modes.htm
 docs-vmr-defaults: //docs.solace.com/Solace-VMR-Set-Up/VMR-Configuration-Defaults.htm
