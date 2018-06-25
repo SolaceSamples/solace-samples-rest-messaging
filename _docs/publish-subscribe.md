@@ -37,7 +37,7 @@ As outlined in the [Online REST Messaging Documentation]({{ site.docs-rest-messa
 
 The Solace API uses the HTTP POST requests to allow clients to publish message Solace messaging. On the subscribe side, the Solace API follows the asynchronous notification pattern and use an HTTP POST from Solace messaging to the client to delivery messages. This means that pub and sub messages are sent on different HTTP connections than they are received as shown in the following figure.
 
-![solace-rest-messaging-api]({{ site.baseurl }}/images/solace-rest-messaging-api.png)
+![solace-rest-messaging-api]({{ site.baseurl }}/assets/images/solace-rest-messaging-api.png)
 
 There are several benefits to this approach. First it removes the possibility of message loss which can exist when using HTTP GET requests without explicate separate acknowledgement.. It also enables much higher performance and overall message rate when multiple, parallel HTTP connections are used.
 
@@ -48,7 +48,7 @@ The [Online REST Messaging Documentation]({{ site.docs-rest-messaging }}){:targe
 
 Because of the difference between publishing and subscribing, these topics are introduced as needed in the tutorial below.
 
-{% include solaceMessaging.md %}
+{% include_relative assets/solaceMessaging.md %}
 
 ## Obtaining the Solace API
 
@@ -58,7 +58,7 @@ There is no API to obtain. The Solace REST messaging API is a wireline RESTful H
 
 First this tutorial will show how to setup the subscriber side so that you are ready to receive messages that are published.
 
-![]({{ site.baseurl }}/images/pub-sub-receiving-message-300x134.png)
+![]({{ site.baseurl }}/assets/images/pub-sub-receiving-message-300x134.png)
 
 On the consume side, the Solace REST messaging API depends on a guaranteed messaging queue. As such it is a requirement for REST consumers that Solace messaging support guaranteed messaging and have this feature configured as outlined in the [assumptions section above](#assumptions).
 
@@ -188,7 +188,7 @@ To apply this configuration, simply log in to Solace messaging CLI as an admin u
 
 If connecting using Solace Cloud, obtain your management credentials by scrolling down to the Management section on the Connectivity tab, and connect using port 2222.
 
-![]({{ site.baseurl }}/images/management-info.png)
+![]({{ site.baseurl }}/assets/images/management-info.png)
 
 ```
 ssh <management-username>@<HOST> -p 2222
@@ -239,7 +239,7 @@ At this point the consumer is up and ready to receive messages.
 
 Now it is time to send a message to the waiting consumer.  
 
-[]({{ site.baseurl }}/images/pub-sub-sending-message-300x134.png)
+[]({{ site.baseurl }}/assets/images/pub-sub-sending-message-300x134.png)
 
 Sending a REST message to Solace is very simple. For this example, we will use the command line tool cURL to send the required HTTP. Refer to [REST Messaging Protocol Guide]({{ site.docs-rest-protocol }}){:target="_top"} for the full details of the Solace REST messaging API.
 

@@ -1,0 +1,18 @@
+# Site settings
+title: Solace REST Messaging API
+summary: These tutorials get you up to speed sending and receiving messages with Solace technology.
+baseurl: "/solace-samples-rest-messaging" # the subpath of your site, e.g. /solace-samples-java
+repository: https://github.com/SolaceSamples/solace-samples-rest-messaging
+
+# Also see _includes/intro.html to customize the description which gets included in index.html.
+
+# Links
+docs-core-concepts: //docs.solace.com/Features/Core-Concepts.htm
+docs-topic-matching: //docs.solace.com/Features/Topic-Matching-and-Delivery-Modes.htm
+docs-vmr-defaults: //docs.solace.com/Solace-VMR-Set-Up/VMR-Configuration-Defaults.htm
+docs-rest-messaging: //docs.solace.com/Open-APIs-Protocols/REST-home.htm
+docs-rest-introduction: //docs.solace.com/Features/Using-REST.htm
+docs-rest-concepts: //docs.solace.com/Features/REST-Messaging-Concepts/REST-Msging-Concepts.htm
+docs-rest-protocol: //docs.solace.com/RESTMessagingPrtl/Solace-REST-Overview.htm
+links-community: //dev.solace.com/community/
+links-solaceCloud-setup: //cloud.solace.com/create-messaging-service/
