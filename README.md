@@ -9,7 +9,7 @@ The "Getting Started" tutorials will get you up to speed and sending messages wi
 
 ## Contents
 
-This repository contains tutorial walk throughs for basic Solace messaging patterns using the Solace REST Messaging API. For a nice introduction to the Solace API and associated tutorials, check out the [tutorials home page](https://solacesamples.github.io/solace-samples-rest-messaging/).
+This repository contains tutorial walk throughs for basic Solace messaging patterns using the Solace REST Messaging API. For a nice introduction to the Solace API and associated tutorials, check out the [tutorials home page](https://dev.solace.com/samples/solace-samples-rest-messaging/).
 
 ## Contributing
 
