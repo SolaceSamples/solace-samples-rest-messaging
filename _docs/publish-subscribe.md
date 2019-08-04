@@ -35,16 +35,16 @@ The goal of this tutorial is to demonstrate the most basic messaging interaction
 
 As outlined in the [Online REST Messaging Documentation]({{ site.docs-rest-messaging }}){:target="_top"}, the API enable users to send messages to and asynchronously receive messages with Solace messaging over HTTP using a RESTful API.
 
-The Solace API uses the HTTP POST requests to allow clients to publish message Solace messaging. On the subscribe side, the Solace API follows the asynchronous notification pattern and use an HTTP POST from Solace messaging to the client to delivery messages. This means that pub and sub messages are sent on different HTTP connections than they are received as shown in the following figure.
+The Solace API uses HTTP POST requests to allow clients to publish message Solace messaging. On the subscribe side, the Solace API follows the asynchronous notification pattern and uses an HTTP POST from Solace messaging to the client to delivery messages. This means that pub and sub messages are sent on different HTTP connections than they are received as shown in the following figure.
 
 ![solace-rest-messaging-api]({{ site.baseurl }}/assets/images/solace-rest-messaging-api.png)
 
-There are several benefits to this approach. First it removes the possibility of message loss which can exist when using HTTP GET requests without explicate separate acknowledgement.. It also enables much higher performance and overall message rate when multiple, parallel HTTP connections are used.
+There are several benefits to this approach. First it removes the possibility of message loss which can exist when using HTTP GET requests without explicit separate acknowledgement. It also enables much higher performance and overall message rate when multiple, parallel HTTP connections are used.
 
 The [Online REST Messaging Documentation]({{ site.docs-rest-messaging }}){:target="_top"} has the following parts which explain the API in more detail:
 
 * REST Messaging Introduction & REST Messaging Concepts which explains the API at an architectural level.
-* REST Messaging Protocol which explains the wireline details explains like how to format the HTTP messages etc.
+* REST Messaging Protocol which explains the wireline details - like how to format the HTTP messages etc.
 
 Because of the difference between publishing and subscribing, these topics are introduced as needed in the tutorial below.
 
