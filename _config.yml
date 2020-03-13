@@ -14,5 +14,5 @@ docs-rest-messaging: //docs.solace.com/Open-APIs-Protocols/REST-get-start.htm
 docs-rest-introduction: //docs.solace.com/Open-APIs-Protocols/Using-REST.htm
 docs-rest-concepts: //docs.solace.com/Features/REST-Messaging-Concepts/REST-Msging-Concepts.htm
 docs-rest-protocol: //docs.solace.com/RESTMessagingPrtl/Solace-REST-Overview.htm
-links-community: //solace.com/support/
+links-community: //solace.community
 links-solaceCloud-setup: //solace.com/cloud/
