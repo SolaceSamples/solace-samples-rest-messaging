@@ -1,0 +1,107 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.jsonschema2pojo' version '1.2.1'
+}
+
+group = 'com.solace'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    avroTools
+}
+
+dependencies {
+    implementation("org.apache.logging.log4j:log4j-core:2.24.3")
+    implementation("org.apache.logging.log4j:log4j-slf4j-impl:2.24.3")
+
+    // Add avro-tools as a dependency for code generation
+    avroTools 'org.apache.avro:avro-tools:1.12.0'
+}
+
+// Define generated source directories using layout helpers for consistency
+def avroDestDir = layout.buildDirectory.dir("generated-sources/avro").get().asFile
+def jsonDestDir = layout.buildDirectory.dir("generated-sources/jsonschema").get().asFile
+
+task generateAvro(type: JavaExec) {
+    description = 'Generates Java classes from Avro schema files'
+    group = 'build'
+
+    classpath = configurations.avroTools
+    mainClass = 'org.apache.avro.tool.Main'
+
+    def avroSrcDir = "${projectDir}/src/main/resources/avro-schema"
+    def userSchemaFile = file("${avroSrcDir}/user.avsc")
+
+    // Create output directory if it doesn't exist
+    doFirst {
+        file(avroDestDir).mkdirs()
+
+        // Make sure the file exists before trying to compile it
+        if (!userSchemaFile.exists()) {
+            throw new GradleException("Schema file ${userSchemaFile} does not exist!")
+        }
+    }
+
+    args = [
+            'compile',
+            'schema',
+            userSchemaFile.absolutePath,
+            avroDestDir
+    ]
+
+    inputs.file(userSchemaFile)
+    outputs.dir(avroDestDir)
+}
+
+// Configure the jsonschema2pojo extension
+jsonSchema2Pojo {
+    source = files("${projectDir}/src/main/resources/json-schema")
+    targetDirectory = jsonDestDir
+    targetPackage = 'com.solace.samples.serdes.jsonschema'
+    propertyWordDelimiters = ['_'] as char[]
+}
+
+compileJava {
+    dependsOn generateAvro
+    dependsOn generateJsonSchema2Pojo
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir avroDestDir
+            srcDir jsonDestDir
+        }
+    }
+}
+
+def mainClasses = [
+        JsonSchemaRestPublisherHttpClient: 'com.solace.samples.rest.features.serdes.http.jsonschema.JsonSchemaRestPublisherHttpClient',
+        JsonSchemaRestPublisherHttpClientWithSchemaId: 'com.solace.samples.rest.features.serdes.http.jsonschema.JsonSchemaRestPublisherHttpClientWithSchemaId',
+        JsonSchemaRestPublisherHttpUrlConnection: 'com.solace.samples.rest.features.serdes.net.jsonschema.JsonSchemaRestPublisherHttpUrlConnection',
+        JsonSchemaRestConsumer: 'com.solace.samples.rest.features.serdes.http.jsonschema.JsonSchemaRestConsumer',
+        JsonSchemaRestSyncRequestReplyProducer: 'com.solace.samples.rest.features.serdes.http.jsonschema.JsonSchemaRestSyncRequestReplyProducer',
+        JsonSchemaRestSyncRequestReplyConsumer: 'com.solace.samples.rest.features.serdes.http.jsonschema.JsonSchemaRestSyncRequestReplyConsumer',
+        JsonSchemaRestAsyncRequestReply: 'com.solace.samples.rest.features.serdes.http.jsonschema.JsonSchemaRestAsyncRequestReply',
+        AvroRestPublisherHttpClient: 'com.solace.samples.rest.features.serdes.http.avro.AvroRestPublisherHttpClient',
+        AvroRestPublisherHttpUrlConnection: 'com.solace.samples.rest.features.serdes.net.avro.AvroRestPublisherHttpUrlConnection',
+        AvroRestConsumer: 'com.solace.samples.rest.features.serdes.http.avro.AvroRestConsumer',
+        AvroRestSyncRequestReplyProducer: 'com.solace.samples.rest.features.serdes.http.avro.AvroRestSyncRequestReplyProducer',
+        AvroRestSyncRequestReplyConsumer: 'com.solace.samples.rest.features.serdes.http.avro.AvroRestSyncRequestReplyConsumer',
+        AvroRestAsyncRequestReply: 'com.solace.samples.rest.features.serdes.http.avro.AvroRestAsyncRequestReply'
+]
+
+mainClasses.each { name, mainClassPath ->
+    tasks.register("run${name}", JavaExec) {
+        group = "application"
+        description = "Runs $name"
+        classpath = sourceSets.main.runtimeClasspath
+        mainClass = mainClassPath
+        standardInput = System.in
+    }
+}
