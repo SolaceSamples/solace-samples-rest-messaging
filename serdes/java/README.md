@@ -29,8 +29,8 @@ To upload a schema, follow these steps:
         - For `create-user-response.json`, use `solace/samples/create-user-response/json`
     - **Type**: Select `JSON Schema`.
 
-    > [!NOTE] 
-    > Each schema must be uploaded separately with its own unique Artifact Id to avoid conflicts.
+> [!NOTE] 
+> Each schema must be uploaded separately with its own unique Artifact Id to avoid conflicts.
 
     After setting the Artifact ID and Type, follow these steps:
 
