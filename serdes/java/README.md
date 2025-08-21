@@ -1,83 +1,81 @@
 This folder will contain a sample Java application that demonstrates how to use Solace Schema Registry SERDES for REST producers and consumers to connect to the schema registry on localhost.
 
-# Requirements
+## Requirements
 - Java 11 or later
 - Gradle 8.5
 
-1. Get the schema registry package solace-schema-registry-dist from public repo [https://github.com/SolaceLabs/schema-registry-beta/releases](https://github.com/SolaceLabs/schema-registry-beta/releases). Un-Tar it and run the script from this folder.
+## Solace Schema Registry
+For information about how to deploy and configure the Solace Schema Registry, please refer to our documentation here:
+https://docs.solace.com/Schema-Registry/schema-registry-overview.htm
 
-2. Set up Registry - the setup-registry.js sets up the env vars from .env and runs the docker compose file and does a system health check.
-```shell
-node setup-registry.js
-```
-3. Open browser and navigate to http://localhost:8888
+## Upload a Schema
+To upload a schema, follow these steps:
 
-4. Login with one of the following:
-   * `sr-developer:<devPassword>`
-   * `sr-readonly:<roPassword>`
+1. Begin by logging into an account with write access and click on the "Create Artifact" button.
 
-5. Upload a Schema
+2. Leave the Group Id field empty.
 
-   To upload a schema, follow these steps:
+    ### Avro Schema
+    - **Artifact Id**: Use a unique identifier for each schema:
+        - For `user.avsc`, use `solace/samples/avro`
+        - For `create-user.avsc`, use `solace/samples/create-user/avro`
+        - For `create-user-response.avsc`, use `solace/samples/create-user-response/avro`
+    - **Type**: Select `Avro Schema`.
 
-   1. Begin by logging into an account with write access and click on the "Create Artifact" button.
+    ### JSON Schema
+    - **Artifact Id**:
+        - For `user.json`, use `solace/samples/json`
+        - For `create-user.json`, use `solace/samples/create-user/json`
+        - For `create-user-response.json`, use `solace/samples/create-user-response/json`
+    - **Type**: Select `JSON Schema`.
 
-   2. Leave the Group Id field empty.
+    > [!NOTE] 
+    > Each schema must be uploaded separately with its own unique Artifact Id to avoid conflicts.
 
-   ### Avro Schema
-   - **Artifact Id**: Use a unique identifier for each schema:
-     - For `user.avsc`, use `solace/samples/avro`
-   - **Type**: Select `Avro Schema`.
+    After setting the Artifact ID and Type, follow these steps:
 
-   ### JSON Schema
-   - **Artifact Id**: Use `solace/samples/json` for the `user.json` schema.
-   - **Type**: Select `JSON Schema`.
+3. Click the "Next" button to proceed.
 
-   > **Note:** Each schema must be uploaded separately with its own unique Artifact Id to avoid conflicts.
+4. You can skip the Artifact Metadata section as it's not required. Simply press "Next" to continue.
 
-   After setting the Artifact ID and Type, follow these steps:
+5. On the Version Content Page, leave the version set to auto, or if preferred, enter a specific value of your choice.
 
-   4. Click the "Next" button to proceed.
+6. Upload Schema content
+    ### For Avro Schema:
+    - On the Version Content Page, upload the appropriate schema file from the `rest/java/src/main/resources/avro-schema/` directory:
+        - When using Artifact Id `solace/samples/avro`, upload `user.avsc`
+        - When using Artifact Id `solace/samples/create-user/avro`, upload `create-user.avsc`
+        - When using Artifact Id `solace/samples/create-user-response/avro`, upload `create-user-response.avsc`
 
-   5. You can skip the Artifact Metadata section as it's not required. Simply press "Next" to continue.
+    ### For JSON Schema:
+    - On the Version Content Page, upload the appropriate schema file from the `rest/java/src/main/resources/json-schema/` directory:
+        - When using Artifact Id `solace/samples/json`, upload `user.json`
+        - When using Artifact Id `solace/samples/create-user/json`, upload `create-user.json`
+        - When using Artifact Id `solace/samples/create-user-response/json`, upload `create-user-response.json`
 
-   6. On the Version Content Page, leave the version set to auto, or if preferred, enter a specific value of your choice.
-   
-   ### For Avro Schema:
-   7. On the Version Content Page, upload the appropriate schema file from the `rest/java/src/main/resources/avro-schema/` directory:
-      - When using Artifact Id `solace/samples/avro`, upload `user.avsc`
+7. Click "Next" to move forward.
 
-   ### For JSON Schema:
-   7. On the Version Content Page, upload the appropriate schema file from the `rest/java/src/main/resources/json-schema/` directory:
-      - When using Artifact Id `solace/samples/json`, upload `user.json`
+8. The Version Metadata is not necessary and can be skipped.
 
-   8. Click "Next" to move forward.
+9. Finally, click the "Create" button to complete the process.
 
-   9. The Version Metadata is not necessary and can be skipped.
+# Running a Sample
 
-    10. Finally, click the "Create" button to complete the process.
-
-6. Add the required Jars to the samples
-   1. Create a `lib` folder.
-   2. Extract the zip archives for the Solace Avro SERDES and Solace Json Schema SERDES.
-   3. Identify all JAR files within the extracted folders. They are under the `lib` folders.
-   4. Move these JAR files into the newly created `lib` directory.
-
-
-7. Build the java samples
-NOTE: For windows users, use the `gradlew.bat` file instead of `gradlew` below
+1. Build the java samples
+> [!NOTE] 
+> For windows users, use the `gradlew.bat` file instead of `gradlew` below
 ```shell
 ./gradlew build
 ```
 
-8. Run a java sample
+2. Run a java sample
 ```shell
 ./gradlew run<SAMPLE_CLASS_NAME> --args="<CMD LINE ARGS HERE>"
 # For example running JsonSchemaRestPublisherHttpClient against a broker located at brokerUrl with a REST publishing port of 38080
 ./gradlew runJsonSchemaRestPublisherHttpClient --args="brokerUrl 38080"
 ```
 
-### Running the REST Consumer Samples
+## Running the REST Consumer Samples
 
 The REST consumer samples start a local HTTP server that listens for incoming POST requests from a Solace broker's REST Delivery Point (RDP).
 
@@ -98,7 +96,8 @@ To run the `JsonSchemaRestConsumer` on port `8080`, listening on `/my-rest-endpo
 
 To deliver messages to the running consumer, you must configure a REST Delivery Point (RDP) on your Solace broker. For detailed instructions, refer to the [Solace Documentation on REST Delivery Points](https://docs.solace.com/Services/Managing-RDPs.htm?Highlight=rest#configuring-REST-delivery-points).
 
-NOTE: The registry URL, username, password and content-type can be customized by setting environment variables. 
+> [!NOTE] 
+> The registry URL, username, password and content-type can be customized by setting environment variables. 
 If not set, the application will use default values. 
 To override the defaults, set the following environment variables before running the application:
 The values shown below are the default settings. Modify these as needed for your specific registry configuration.
