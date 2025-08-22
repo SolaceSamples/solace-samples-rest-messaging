@@ -73,6 +73,35 @@ To upload a schema, follow these steps:
 ./gradlew runJsonSchemaRestPublisherHttpClient --args="brokerUrl 38080"
 ```
 
+## Setting Up Solace REST Consumers and Request/Reply Applications
+
+### Required Queue and RDP Configuration
+
+Before running the samples, you need to configure the Solace broker with the appropriate queues and REST Delivery Points (RDPs).
+For more detailed documentation, refer to the [Solace Documentation on REST Delivery Points](https://docs.solace.com/Services/Managing-RDPs.htm?Highlight=rest#configuring-REST-delivery-points).
+
+#### For the Consumer Sample
+
+1. **Create a Queue**:
+   - For Avro samples: Create a queue subscribed to `solace/samples/avro`
+   - For JSON samples: Create a queue subscribed to `solace/samples/json`
+
+2. **Configure an RDP Client**:
+   - Create a REST Delivery Point
+   - Configure a consumer bound to your REST consumer
+   - Add a queue binding to your REST consumers endpoint that uses the queue created above
+
+#### For the Request/Reply Sample (Producer/Consumer Pair)
+
+1. **Create a Queue**:
+   - For Avro samples: Create a queue subscribed to `solace/samples/create-user/avro`
+   - For JSON samples: Create a queue subscribed to `solace/samples/create-user/json`
+
+2. **Configure an RDP Client**:
+   - Create a REST Delivery Point
+   - Configure a consumer bound to your REST consumer
+   - Add a queue binding to your REST consumers endpoint that uses the queue created above
+
 ## Running the REST Consumer Samples
 
 The REST consumer samples start a local HTTP server that listens for incoming POST requests from a Solace broker's REST Delivery Point (RDP).
