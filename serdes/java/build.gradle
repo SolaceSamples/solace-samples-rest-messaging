@@ -18,6 +18,9 @@ configurations {
 dependencies {
     implementation("org.apache.logging.log4j:log4j-core:2.24.3")
     implementation("org.apache.logging.log4j:log4j-slf4j-impl:2.24.3")
+    implementation(platform("com.solace:solace-schema-registry-serdes-bom:1.0.0"))
+    implementation("com.solace:solace-schema-registry-avro-serde")
+    implementation("com.solace:solace-schema-registry-jsonschema-serde")
 
     // Add avro-tools as a dependency for code generation
     avroTools 'org.apache.avro:avro-tools:1.12.0'
