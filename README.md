@@ -11,6 +11,13 @@ The "Getting Started" tutorials will get you up to speed and sending messages wi
 
 This repository contains tutorial walk throughs for basic Solace messaging patterns using the Solace REST Messaging API. For a nice introduction to the Solace API and associated tutorials, check out the [tutorials home page](https://tutorials.solace.dev/rest-messaging).
 
+
+## SERDES and Schema Registry Samples
+
+This repository also includes samples demonstrating serialization and deserialization (SERDES) with Solace Schema Registry support using REST messaging.
+
+For more information about these samples, please see the [SERDES README](serdes/README.md).
+
 ## Contributing
 
 Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
