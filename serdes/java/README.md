@@ -94,7 +94,7 @@ For more detailed documentation, refer to the [Solace Documentation on REST Deli
 #### For the Request/Reply Sample (Producer/Consumer Pair)
 > [!NOTE]
 > Due to limitations regarding reply-to-topics in request-reply messaging over REST, there is not a sample application of 
-> running an asynchronous serdes replier. Instead a synchronous one, such as JsonSchemaSerdesReplier must be used.
+> running an asynchronous serdes replier. Instead a synchronous one, such as [JsonSchemaSerdesReplier](https://github.com/SolaceSamples/solace-samples-java-jcsmp/blob/master/src/main/java/com/solace/samples/jcsmp/features/serdes/jsonschema/JsonSchemaSerdesReplier.java), must be used
 
 1. **Create a Queue**:
    - For Avro samples:
