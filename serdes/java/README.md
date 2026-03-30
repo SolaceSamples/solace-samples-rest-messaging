@@ -92,15 +92,22 @@ For more detailed documentation, refer to the [Solace Documentation on REST Deli
    - Add a queue binding to your REST consumers endpoint that uses the queue created above
 
 #### For the Request/Reply Sample (Producer/Consumer Pair)
+> [!NOTE]
+> Due to limitations regarding reply-to-topics in request-reply messaging over REST, there is not a sample application of 
+> running an asynchronous serdes replier. Instead a synchronous one, such as [JsonSchemaSerdesReplier](https://github.com/SolaceSamples/solace-samples-java-jcsmp/blob/master/src/main/java/com/solace/samples/jcsmp/features/serdes/jsonschema/JsonSchemaSerdesReplier.java), must be used
 
 1. **Create a Queue**:
-   - For Avro samples: Create a queue subscribed to `solace/samples/create-user/avro`
-   - For JSON samples: Create a queue subscribed to `solace/samples/create-user/json`
+   - For Avro samples:
+     - Create a queue subscribed to `solace/samples/create-user/avro`
+     - Create a queue subscried to `solace/samples/create-user-response/avro`
+   - For JSON samples:
+     - Create a queue subscribed to `solace/samples/create-user/json`
+     - Create a queue subscribed to `solace/samples/create-user-response/json`
 
 2. **Configure an RDP Client**:
    - Create a REST Delivery Point
-   - Configure a consumer bound to your REST consumer
-   - Add a queue binding to your REST consumers endpoint that uses the queue created above
+   - Create a REST consumer with the hostname or IP address of your requestor application, and with the port number your requestor will listen for replies on.
+   - Add a queue binding to the queue subscribed to `solace/samples/create-user-response`, and assign a target of `/message` or whatever target you plan on passing to the application CLI.
 
 ## Running the REST Consumer Samples
 
