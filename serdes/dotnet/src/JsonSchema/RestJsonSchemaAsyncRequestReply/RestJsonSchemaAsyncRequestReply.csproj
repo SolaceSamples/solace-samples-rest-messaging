@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net8.0;net462</TargetFrameworks>
+    <Platforms>AnyCPU</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Solace.SchemaRegistry.Serdes.JsonSchema" Version="0.0.1-main.194" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Resources\Resources.csproj" />
+  </ItemGroup>
+</Project>
