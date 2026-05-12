@@ -10,6 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Resources\Resources.csproj" />
+    <ProjectReference Include="..\..\Resources\Resources.csproj" />
   </ItemGroup>
 </Project>
