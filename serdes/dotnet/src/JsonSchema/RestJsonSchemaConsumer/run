@@ -1,7 +1,0 @@
-#!/bin/bash
-
-export REGISTRY_URL="http://${REGISTRY_ADDRESS:-127.0.0.1}:8081/apis/registry/v3"
-
-./bin/Debug/net8.0/RestJsonSchemaConsumer \
-        "/message" \
-        38081
