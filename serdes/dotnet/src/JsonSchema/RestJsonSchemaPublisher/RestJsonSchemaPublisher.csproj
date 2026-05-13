@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Solace.SchemaRegistry.Serdes.JsonSchema" Version="0.0.1-main.194" />
+    <PackageReference Include="Solace.SchemaRegistry.Serdes.JsonSchema" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
