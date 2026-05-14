@@ -26,7 +26,7 @@ The solution (`src/JsonSchema/JsonSchema.sln`) contains the following projects:
 The `Resources` project at `src/Resources/` contains:
 
 - `Serdes/JsonSchema/User.cs`, `CreateUser.cs`, `CreateUserResponse.cs`: Plain .NET model classes used by every sample.
-- `Serdes/JsonSchema/Schemas/user.json`, `createUser.json`, `createUserResponse.json`: The JSON Schema definitions to be uploaded to the Schema Registry.
+- `Serdes/JsonSchema/Schemas/user.json`, `create-user.json`, `create-user-response.json`: The JSON Schema definitions to be uploaded to the Schema Registry.
 
 ## Requirements
 
@@ -49,8 +49,8 @@ Before running the samples, the three JSON Schemas from `src/Resources/Serdes/Js
     ### JSON Schema
     - **Artifact Id** (one per schema, each uploaded separately):
         - For `user.json`, use `solace/samples/json`
-        - For `createUser.json`, use `solace/samples/create-user/json`
-        - For `createUserResponse.json`, use `solace/samples/create-user-response/json`
+        - For `create-user.json`, use `solace/samples/create-user/json`
+        - For `create-user-response.json`, use `solace/samples/create-user-response/json`
     - **Type**: Select `JSON Schema`.
 
 > [!NOTE]
@@ -61,8 +61,8 @@ Before running the samples, the three JSON Schemas from `src/Resources/Serdes/Js
 5. On the Version Content Page, leave the version set to auto (or enter a specific value).
 6. Upload the matching schema file from `src/Resources/Serdes/JsonSchema/Schemas/`:
     - For Artifact Id `solace/samples/json`, upload `user.json`
-    - For Artifact Id `solace/samples/create-user/json`, upload `createUser.json`
-    - For Artifact Id `solace/samples/create-user-response/json`, upload `createUserResponse.json`
+    - For Artifact Id `solace/samples/create-user/json`, upload `create-user.json`
+    - For Artifact Id `solace/samples/create-user-response/json`, upload `create-user-response.json`
 7. Click "Next", skip Version Metadata, then click "Create".
 
 ## Broker Setup
