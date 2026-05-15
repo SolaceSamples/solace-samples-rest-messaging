@@ -124,6 +124,8 @@ Identical behaviour to the publisher above, but the schema ID is written as an `
 ```shell
 cd src/JsonSchema/RestJsonSchemaPublisherWithSchemaId
 dotnet run -- <host> <port>
+# Example: publish to a broker on localhost with REST publishing port 9000
+dotnet run -- localhost 9000
 ```
 
 A convenience `run` shell script is also provided that points at `127.0.0.1` and port `39001` by default.
@@ -153,6 +155,8 @@ Sends a `CreateUser` request over REST and reads the `CreateUserResponse` from t
 ```shell
 cd src/JsonSchema/RestJsonSchemaSyncRequestReplyProducer
 dotnet run -- <host> <port>
+# Example: send a request to a broker on localhost with REST publishing port 9000
+dotnet run -- localhost 9000
 ```
 
 ### Synchronous Request/Reply Consumer
@@ -162,6 +166,8 @@ Listens for `CreateUser` requests and replies synchronously in the HTTP response
 ```shell
 cd src/JsonSchema/RestJsonSchemaSyncRequestReplyConsumer
 dotnet run -- <post-request-target> [<port>] [<http-topic-header-key>]
+# Example: listen on http://localhost:8080/message and read the topic from the "X-Solace-Topic" header
+dotnet run -- /message 8080 X-Solace-Topic
 ```
 
 ### Asynchronous Request/Reply
