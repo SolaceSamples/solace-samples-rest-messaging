@@ -5,3 +5,4 @@ _site
 docs/_site
 .idea
 **/.claude/**
+*.lscache

@@ -19,7 +19,7 @@ The solution (`src/JsonSchema/JsonSchema.sln`) contains the following projects:
 | `Resources` | Shared class library containing the `User`, `CreateUser`, and `CreateUserResponse` POCOs plus their embedded JSON schema files. |
 
 > [!NOTE]
-> Due to limitations regarding reply-to-topics in request/reply messaging over REST, there is no .NET sample application for an asynchronous SERDES replier. A synchronous replier (such as `RestJsonSchemaSyncRequestReplyConsumer` in this solution, or the [JsonSchemaSerdesReplier](https://github.com/SolaceSamples/solace-samples-java-jcsmp/blob/master/src/main/java/com/solace/samples/jcsmp/features/serdes/jsonschema/JsonSchemaSerdesReplier.java) Java sample) must be used.
+> Due to limitations regarding reply-to-topics in request/reply messaging over REST, there is no .NET sample application for an asynchronous SERDES replier. A synchronous replier (such as `RestJsonSchemaSyncRequestReplyConsumer` in this solution, or the [JsonSchemaSerdesReplier](https://github.com/SolaceSamples/solace-samples-dotnet/tree/master/src/features/serdes/JsonSchema/JsonSchemaSerdesReplier)) must be used.
 
 ### Shared Resources
 
@@ -182,6 +182,7 @@ dotnet run -- localhost 9000 /message 38081
 ```
 
 A convenience `run` shell script is also provided at `src/JsonSchema/RestJsonSchemaAsyncRequestReply/run`.
+
 
 ## Environment Variables
 
