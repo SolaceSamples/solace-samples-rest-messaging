@@ -7,3 +7,4 @@ This directory contains samples demonstrating serialization and deserialization 
 Currently, the following language implementations are available:
 
 - [Java](./java/README.md) - Java implementation of REST SERDES with Schema Registry support
+- [.NET](./dotnet/README.md) - .NET implementation of REST SERDES with Schema Registry support

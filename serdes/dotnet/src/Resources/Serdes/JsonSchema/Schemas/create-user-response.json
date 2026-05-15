@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CreateUserResponse",
+  "description": "A user creation response",
+  "type": "object",
+  "customDotnetType": "Resources.Serdes.JsonSchema.CreateUserResponse, Resources",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id"
+  ]
+}
