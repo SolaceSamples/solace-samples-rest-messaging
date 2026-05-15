@@ -128,7 +128,6 @@ dotnet run -- <host> <port>
 dotnet run -- localhost 9000
 ```
 
-A convenience `run` shell script is also provided that points at `127.0.0.1` and port `39001` by default.
 
 ### Consumer
 
@@ -180,8 +179,6 @@ dotnet run -- <host> <publishing-port> <reply-post-request-target> <listen-port>
 # Example:
 dotnet run -- localhost 9000 /message 38081
 ```
-
-A convenience `run` shell script is also provided at `src/JsonSchema/RestJsonSchemaAsyncRequestReply/run`.
 
 
 ## Environment Variables
