@@ -128,7 +128,6 @@ dotnet run -- <host> <port>
 dotnet run -- localhost 9000
 ```
 
-
 ### Consumer
 
 Starts a local HTTP server that accepts POSTs from a Solace RDP.
@@ -179,7 +178,6 @@ dotnet run -- <host> <publishing-port> <reply-post-request-target> <listen-port>
 # Example:
 dotnet run -- localhost 9000 /message 38081
 ```
-
 
 ## Environment Variables
 
