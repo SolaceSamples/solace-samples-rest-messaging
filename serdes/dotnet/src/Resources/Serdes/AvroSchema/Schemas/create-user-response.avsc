@@ -1,0 +1,8 @@
+{
+  "namespace": "Resources.Serdes.AvroSchema",
+  "type": "record",
+  "name": "CreateUserResponse",
+  "fields": [
+    {"name": "id", "type": "string"}
+  ]
+}

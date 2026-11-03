@@ -6,8 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Text.Json" Version="9.0.9" Condition="'$(TargetFramework)' == 'net462'"/>
-    <PackageReference Include="System.Net.Http" Version="4.3.4" Condition="'$(TargetFramework)' == 'net462'"/>
+    <PackageReference Include="System.Text.Json" Version="9.0.9" Condition="'$(TargetFramework)' == 'net462'" />
+    <PackageReference Include="System.Net.Http" Version="4.3.4" Condition="'$(TargetFramework)' == 'net462'" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Apache.Avro" Version="1.12.2" />
   </ItemGroup>
 
 </Project>
